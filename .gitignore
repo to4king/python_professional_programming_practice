@@ -1,0 +1,6 @@
+# ignore rules
+.idea
+
+venv
+
+__pycache__
