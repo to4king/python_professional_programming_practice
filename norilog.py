@@ -1,6 +1,6 @@
 import json
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, Markup, escape
 from datetime import datetime
 
 application = Flask(__name__)
@@ -70,6 +70,12 @@ def save():
 
     # 保存後はトップページにリダイレクトします。
     return redirect('/')
+
+
+@application.template_filter('nl2br')
+def nl2br_filter(s):
+    """改行文字を br タグに置き換えるテンプレートフィルタ"""
+    return escape(s).replace('\n', Markup('<br>'))
 
 
 if __name__ == '__main__':
